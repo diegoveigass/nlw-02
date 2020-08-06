@@ -1,40 +1,55 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
+import api from '../../services/api';
 
 import { Container } from './styles';
 
-const TeacherItem: React.FC = () => {
+export interface TeacherProps {
+  id: number;
+  avatar: string;
+  bio: string;
+  cost: number;
+  name: string;
+  subject: string;
+  whatsapp: string;
+}
+
+interface TeacherItemProps {
+  teacher: TeacherProps;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+  const createNewConnection = useCallback(() => {
+    api.post('connections', {
+      user_id: teacher.id,
+    });
+  }, [teacher.id]);
+
   return (
     <Container>
       <header>
-        <img
-          src="https://avatars1.githubusercontent.com/u/56368749?s=460&u=5594d5ff693ea082f226c32881ab00237113671e&v=4"
-          alt="Diego Veiga"
-        />
+        <img src={teacher.avatar} alt={teacher.name} />
         <div>
-          <strong>Diego Veiga</strong>
-          <span>Química</span>
+          <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
         </div>
       </header>
-      <p>
-        Entusiasta pelas tecnologias mais avançadas da quimica!
-        <br />
-        <br />
-        Apaixonado por explodir coisas em laboratório e por mudar a vida das
-        pessoas através de experiências. Mais de 200.000 pessoas presenciaram
-        minhas explosões em laboratório!
-      </p>
+      <p>{teacher.bio}</p>
 
       <footer>
         <p>
           Preço/hora
-          <strong>R$ 80,00</strong>
+          <strong>R$ {teacher.cost}</strong>
         </p>
-        <button type="button">
+        <a
+          onClick={createNewConnection}
+          target="blank"
+          href={`https://wa.me/${teacher.whatsapp}`}
+        >
           <img src={whatsappIcon} alt="Whatsapp" />
           Entrar em contato
-        </button>
+        </a>
       </footer>
     </Container>
   );

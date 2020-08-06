@@ -42,7 +42,7 @@ export const HeaderContent = styled.div`
   width: 90%;
   margin: 0 auto;
   position: relative;
-  margin: 3.2rem auto;
+  margin: 3.2rem auto 6.4rem;
 
   @media (min-width: 700px) {
     flex: 1;
@@ -66,12 +66,20 @@ export const HeaderContent = styled.div`
     color: var(--color-title-in-primary);
   }
 
+  p {
+    max-width: 30rem;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    color: var(--color-title-in-primary);
+    margin-top: 2.4rem;
+  }
+
   form {
     margin-top: 3.2rem;
 
     @media (min-width: 700px) {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       column-gap: 16px;
       position: absolute;
       bottom: -28px;

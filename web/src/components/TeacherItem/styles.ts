@@ -77,13 +77,14 @@ export const Container = styled.div`
       }
     }
 
-    button {
+    a {
       width: 20rem;
       height: 5.6rem;
       background: var(--color-secundary);
       color: var(--color-button-text);
       border: 0;
       border-radius: 0.8rem;
+      text-decoration: none;
       cursor: pointer;
       font: 700 1.4rem Archivo;
 
