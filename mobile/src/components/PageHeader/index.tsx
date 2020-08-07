@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, ReactNode } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import backIcon from '../../assets/images/icons/back.png';
@@ -11,13 +11,19 @@ import {
   BackImage,
   LogoImage,
   Title,
+  HeaderRight,
 } from './styles';
 
 interface PageHeaderProps {
   title: string;
+  headerRight?: ReactNode;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({
+  title,
+  headerRight,
+  children,
+}) => {
   const { navigate } = useNavigation();
 
   const handleGoBack = useCallback(() => {
@@ -34,7 +40,13 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
         <LogoImage source={logoImg} resizeMode="contain" />
       </TopBar>
 
-      <Title>{title}</Title>
+      <HeaderRight>
+        <Title>{title}</Title>
+
+        {headerRight}
+      </HeaderRight>
+
+      {children}
     </Container>
   );
 };

@@ -25,3 +25,9 @@ export const Title = styled.Text`
   max-width: 200px;
   margin: 40px 0;
 `;
+
+export const HeaderRight = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
